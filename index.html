@@ -5,8 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu de serpent</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Softer color scheme to reduce eye strain */
+        :root {
+            --background-dark: #1a1a1a;
+            --background-light: #2a2a2a;
+            --accent-color: #3a9e3f; /* Softer green */
+            --text-color: #e0e0e0; /* Not pure white */
+            --shadow-color: rgba(58, 158, 63, 0.4); /* Reduced opacity */
+        }
+
+        /* Reduce animation intensity */
+        @keyframes subtle-glow {
+            from {
+                text-shadow: 0 0 3px var(--accent-color);
+            }
+            to {
+                text-shadow: 0 0 6px var(--accent-color);
+            }
+        }
         body {
-            background-color: #222;
+            background-color: #121212;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
@@ -15,18 +39,34 @@
             margin: 0;
             flex-direction: column;
             color: #fff;
+            overflow: hidden;
+            background-image: linear-gradient(to bottom right, #121212, #1e1e1e);
         }
         h1 {
             color: #4CAF50;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-size: 2.5em;
+            font-size: 3em;
+            letter-spacing: 2px;
+            animation: glow 2s ease-in-out infinite alternate;
         }
         canvas {
-            border: 3px solid #4CAF50;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+            border: 4px solid #4CAF50;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.7);
+            transition: all 0.3s ease;
+        }
+        canvas:hover {
+            box-shadow: 0 0 40px rgba(76, 175, 80, 0.9);
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50;
+            }
+            to {
+                text-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50;
+            }
         }
     </style>
     <script src="script.js"></script>
